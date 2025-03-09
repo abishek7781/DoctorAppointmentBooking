@@ -1,0 +1,41 @@
+#Database config - Here is the MySQL query to create a databases and tables for the Doctor
+
+#Create the database
+CREATE DATABASE dabs;
+USE dabs;
+
+#Create the patients table
+CREATE TABLE patients (
+    patient_id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL,
+    gender VARCHAR(20),
+    phone VARCHAR(15) UNIQUE,
+    email VARCHAR(100) UNIQUE,
+    address VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (patient_id)
+);
+
+#Create the doctors table
+CREATE TABLE doctors (
+    doctor_id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    specialty VARCHAR(100),
+    phone VARCHAR(15) UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (doctor_id)
+);
+
+#Create the appointments table
+CREATE TABLE appointments (
+    appointment_id INT NOT NULL AUTO_INCREMENT,
+    patient_id INT,
+    doctor_id INT,
+    appointment_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('Scheduled', 'Completed', 'Cancelled') DEFAULT 'Scheduled',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (appointment_id),
+    FOREIGN KEY (patient_id) REFERENCES patients(patient_id) ON DELETE CASCADE,
+    FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id) ON DELETE CASCADE
+);
