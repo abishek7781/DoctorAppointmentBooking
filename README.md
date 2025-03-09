@@ -78,5 +78,5 @@ This project is open-source and free to use under the MIT License.
 
 💌 Author:
 Abishek Sankar
-GitHub: github.com/abishek7781
+GitHub: https://github.com/abishek7781
 LinkedIn: https://www.linkedin.com/in/abisheksankar2116/
